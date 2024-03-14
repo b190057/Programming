@@ -1,0 +1,51 @@
+Tarea 1:
+* Sacar datos de una web stática o dinámica y guardarlos en un csv.
+* Requerimientos:
+    1.- Extraer al menos 3 recursos de la misma web
+    2.- Manejar bien las esperas/cargas de contenido
+    3.- Interacción automática (clicks en botones, cargar URL...)
+* Un csv por cada recurso (input para la tarea 2).
+
+Tarea 2:
+* Procesar y analizar los datos para emplear algún análisis: debe responder preguntas relacionadas con los datos.
+
+* Se debe hacer alguna técnica de transformación vista (manipulation, wrangling and/or transformation).
+
+* Se deben mostrar los datos que respondan a esas preguntas (2-3) basándose en los plots vistos en clase o
+  cualquier otro tipo de información extraída de los datos recolectados.
+
+Entrega final: grabar vídeo de 10 minutos explicando todo esto, debe cubrir:
+
+• First part (Web Scraping)
+• Web site(s) selected
+• Resources chosen
+• Explain how scrapping is performed (at high level)
+• Files generated
+
+• Second part (Data manipulation and visualization)
+• Questions defined for the input data
+• Steps to answer for each question:
+• Data tasks (transformation, manipulation, …)
+• Data visualization
+• Answer to question with support material (plots, …)
+
+
+Posibles preguntas:
+1.- El top:
+    - ¿Cuáles son los actores que aparecen con más frecuencia en las películas mejor valoradas?
+    - ¿Cuáles son los directores que aparecen con más frecuencia en las películas mejor valoradas?
+    - ¿Qué generos son los que más gustan?
+    - ¿Hay actores y directores que tienden a colaborar juntos en películas exitosas de manera recurrente?
+
+2.- Peliculas cartelera:
+    - ¿Qué péliculas en cartelera hay y cuáles se van a estrenar proximamente?
+    - ¿Cuáles son las películas más taquilleras actualmente en cartelera?
+    - ¿Es la duración un patrón en el éxito de las películas en taquilla?
+
+3.- Series Netflix:
+    - ¿Qué series se van a estrenar en Netflix proximamente?
+    - ¿Qué relación hay entre las series más populares (más votadas) con las mejores series (mejor puntuación)?
+
+4.- Premios:
+    - ¿Qué películas/ actores han sido nominados a los óscar y quién ha ganado (por categorías y año)?
+    - ¿Qué actor/director ha participado más en todas las películas nominadas a los Óscar?

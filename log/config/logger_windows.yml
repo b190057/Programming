@@ -2,11 +2,14 @@ version: 1
 formatters:
   brief:
     format: '[%(threadName)s] %(levelname)-7s [%(name)s] %(message)s'
+  precise:
+    format: '%(asctime)s [%(threadName)s] %(levelname)s [%(name)s.%(module)s] %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
 handlers:
   file:
     class: logging.handlers.RotatingFileHandler
-    formatter: brief
-    filename: .\log\scrapper.log
+    formatter: precise
+    filename: .\log\scraper.log
     maxBytes: 5242880
     backupCount: 1
     level: DEBUG
@@ -18,7 +21,7 @@ handlers:
 
 
 loggers:
-  scrapper:
+  scraper:
     level: DEBUG
     handlers: [file, console]
     propagate: no
