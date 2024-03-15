@@ -13,7 +13,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from log.config.msg import DATA_PATH
 
 
-def get_data(driver):
+def get_data(driver) -> tuple[str, str, str]:
     """
     This function extract the director, the genders and the actor of a given film.
 
@@ -44,10 +44,13 @@ def get_data(driver):
         for actor in actors.find_all('a'):
             actors_list.append(actor.text)
 
-    return directors_list, genders_list, actors_list[:-1]
+    if len(actors_list) > 1:
+        actors_list = actors_list[:-1]
+
+    return directors_list, genders_list, actors_list
 
 
-def get_final_df(driver, title_list):
+def get_final_df(driver, title_list) -> pd.DataFrame:
     """
     Extract the information of every movie from their own page
 
@@ -115,6 +118,7 @@ def get_urls(driver) -> list[tuple[str, str]]:
     title_list = list()
     for element in top_movies_html:
         link = None
+        name = None
         try:
             link = element.find('a')['href']
             name = element.text.strip()
@@ -122,8 +126,10 @@ def get_urls(driver) -> list[tuple[str, str]]:
         except Exception as e:
             if link:
                 logger.error(f'Could not get the name of the movie: {e}')
+                title_list.append((name, link))
             else:
                 logger.error(f'Could not get the link of the movie: {e}')
+                title_list.append((name, link))
 
     return title_list
 
@@ -142,6 +148,7 @@ def get_top_page(driver) -> None:
         configCookies.click()
     except Exception as e:
         logger.error(f"Cookies could not been rejected: {e}")
+        raise Exception("Cookies could not been rejected:")
 
     time.sleep(3)
 
@@ -160,9 +167,15 @@ def get_top_page(driver) -> None:
         topWeb.click()
     except Exception as e:
         logger.error(f"Could not get into the top webpage:  {e}")
+        raise Exception("Could not get into the top webpage")
 
 
-def start_scrapper():
+def start_scrapper() -> None:
+    """
+    Web scraper for the top 1000 FA
+
+        @return:
+    """
     # Add options and initialize the webdriver
     options = webdriver.FirefoxOptions()
     options.add_argument("--disable-cookies")
@@ -174,20 +187,13 @@ def start_scrapper():
 
     # Go into the top 1000 FA
     get_top_page(driver)
-
     time.sleep(3)
 
     # Scroll to the bottom and get all the URL
     title_list = get_urls(driver)
 
-    # Save the main windows
-    main_window = driver.window_handles[0]
-
-    # Get the Dataframe filled with the data
+    # Get and save the data containing the films
     df = get_final_df(driver, title_list)
-
-    # Save the Dataframe and close the scrapper
     df.to_csv(os.path.join(DATA_PATH, 'top_films.csv'), index=False)
-    driver.switch_to.window(main_window)
-    driver.implicitly_wait(3)
+
     driver.quit()
