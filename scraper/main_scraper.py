@@ -1,5 +1,6 @@
-from scraper.top_films import start_scrapper as top_scrapper
-from scraper.releases import start_scrapper as releases_scrapper
+from scraper.top_films import start_scrapper as top_scraper
+from scraper.releases import start_scrapper as releases_scraper
+from scraper.netflix import start_scrapper as netflix_scraper
 
 import logging
 
@@ -12,5 +13,6 @@ def main() -> None:
     """
     logger = logging.getLogger("scraper")
     # Execute scrappers
-    top_scrapper()
-    releases_scrapper()
+    top_scraper()
+    releases_scraper()
+    netflix_scraper()
