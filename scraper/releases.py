@@ -13,16 +13,11 @@ from log.config.msg import DATA_PATH
 
 def get_final_df_box(driver) -> pd.DataFrame:
     """
-    This function extract the title, gross, gender and weeks of the box office
+    This function extract the title, gross, genre and weeks of the box office
 
     @param driver: Driver of the webpage of box office
-    @return: A Dataframe containing the title, gross, gender and weeks of the box office
+    @return: A Dataframe containing the title, gross, genre and weeks of the box office
     """
-    ranking = None
-    title = None
-    week_gross = None
-    total_gross = None
-    gender = None
     box_office_usa = None
     try:
         html_content = driver.page_source

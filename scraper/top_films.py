@@ -13,12 +13,12 @@ from selenium.webdriver.support import expected_conditions as EC
 from log.config.msg import DATA_PATH
 
 
-def get_data(driver) -> tuple[str, str, str]:
+def get_data(driver) -> tuple[list[str], list[str], list[str]]:
     """
-    This function extract the director, the genders and the actor of a given film.
+    This function extract the director, the genres and the actor of a given film.
 
     @param driver: Driver of the webpage of a film
-    @return: three lists, the directors, the genders and the actors.
+    @return: three lists, the directors, the genres and the actors.
     """
     html_content = driver.page_source
     soup = BeautifulSoup(html_content, 'html.parser')  # Get all the names and url of the movies
@@ -30,12 +30,12 @@ def get_data(driver) -> tuple[str, str, str]:
         for director in directors.find_all('a'):
             directors_list.append(director.text)
 
-    # Get genders
-    genders = soup.find(class_="card-genres")
-    genders_list = list()
-    if genders:
-        for gender in genders.find_all('a'):
-            genders_list.append(gender.text)
+    # Get genres
+    genres = soup.find(class_="card-genres")
+    genres_list = list()
+    if genres:
+        for genre in genres.find_all('a'):
+            genres_list.append(genre.text)
 
     # Get actors
     actors = soup.find(class_="card-cast-debug")
@@ -47,7 +47,7 @@ def get_data(driver) -> tuple[str, str, str]:
     if len(actors_list) > 1:
         actors_list = actors_list[:-1]
 
-    return directors_list, genders_list, actors_list
+    return directors_list, genres_list, actors_list
 
 
 def get_final_df(driver, title_list) -> pd.DataFrame:
@@ -56,18 +56,18 @@ def get_final_df(driver, title_list) -> pd.DataFrame:
 
     @param driver: Driver of the top 1000 FA
     @param title_list: List containing the title and url of each movie
-    @return: A Pandas Dataframe that contains the title, the directors, the genders and the actors of all 1000 movies
+    @return: A Pandas Dataframe that contains the title, the directors, the genres and the actors of all 1000 movies
     """
-    df = pd.DataFrame(columns=['Title', 'Directors', 'Genders', 'Actors'])
+    df = pd.DataFrame(columns=['Title', 'Directors', 'genres', 'Actors'])
     for movie_title, movie_url in title_list:
         try:
             driver.get(movie_url)
             time.sleep(0.5)
-            directors_list, genders_list, actors_list = get_data(driver)
+            directors_list, genres_list, actors_list = get_data(driver)
             # Get movie data
             new_row = {'Title': movie_title,
                        'Directors': str(directors_list)[1:-1].replace('\'', ''),
-                       'Genders': str(genders_list)[1:-1].replace('\'', ''),
+                       'genres': str(genres_list)[1:-1].replace('\'', ''),
                        'Actors': str(actors_list)[1:-1].replace('\'', '')}
             df.loc[len(df)] = new_row
         except Exception as e:
