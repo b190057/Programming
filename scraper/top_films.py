@@ -43,6 +43,14 @@ def get_data(driver) -> tuple[list[str], list[str], list[str]]:
     if actors:
         for actor in actors.find_all('a'):
             actors_list.append(actor.text)
+    else:
+        actors = soup.find(class_="card-cast")
+        if actors:
+            for actor in actors.find_all('a'):
+                actors_list.append(actor.text)
+        else:
+            logger.error("Could not extract the actors")
+
 
     if len(actors_list) > 1:
         actors_list = actors_list[:-1]
