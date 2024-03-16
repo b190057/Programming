@@ -108,13 +108,17 @@ def get_data(driver) -> tuple[str, str]:
         # Get producers
         producers = soup.find(class_="card-producer").text
 
+    except Exception as e:
+        logger.error(f"Could not extract the producers {e}")
+
+    try:
         # Get duration
         dt_duration = driver.find_element(By.XPATH, "//dt[contains(text(), 'Running time')]")
         dd_duration = dt_duration.find_element(By.XPATH, "following-sibling::dd")
         duration = dd_duration.text
 
     except Exception as e:
-        logger.error(f"Could not extract the producer or the time {e}")
+        logger.error(f"Could not extract the time {e}")
 
     finally:
         return producers, duration
