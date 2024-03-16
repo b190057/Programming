@@ -197,3 +197,5 @@ def start_scrapper() -> None:
     df.to_csv(os.path.join(DATA_PATH, 'top_films.csv'), index=False)
 
     driver.quit()
+
+    logger.info("Everything worked fine for the new top films scraper")

@@ -253,3 +253,4 @@ def start_scrapper() -> None:
     df_box.to_csv(os.path.join(DATA_PATH, 'box_office.csv'), index=False)
 
     driver.quit()
+    logger.info("Everything worked fine for the new releases scraper")
