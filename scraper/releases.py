@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from log.config.msg import DATA_PATH
+from constants import DATA_PATH
 
 
 def get_final_df_box(driver) -> pd.DataFrame:

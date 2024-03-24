@@ -32,15 +32,19 @@ Entrega final: grabar vídeo de 10 minutos explicando todo esto, debe cubrir:
 
 Posibles preguntas:
 1.- El top:
-    - ¿Cuáles son los actores y directores que aparecen con más frecuencia en las películas mejor valoradas?
-    - ¿Qué generos son los que más gustan?
-    - ¿Hay actores y directores que tienden a colaborar juntos en películas exitosas de manera recurrente?
+    - ¿Qué actores, directores y géneros aparecen con más frecuencia en las películas mejor
+      valoradas (top 15)? (diagrama barras)
+    - ¿Hay actores y directores que tienden a colaborar juntos en películas exitosas de manera
+      recurrente (hacer lista de películas donde han colaborado por los mayores pares de director/actor? (grafo?
+      meter color por género?)
 
 2.- Peliculas cartelera:
-    - ¿Qué péliculas hay en cartelera y cúanto duran?
-    - ¿Qué productor tiene más películas en cartelera?
-    - ¿Cuáles son las películas más taquilleras actualmente en cartelera?
+    - ¿De las péliculas que hay en cartelera(color el nombre) cuáles son las más taquilleras(tamaño, eje x) y
+      cúanto duran(posición, eje y), weeks para x (por total gross y weekend gross? (Gráfico de burbujas)
+    - ¿Qué productor tiene más películas en cartelera? (tarta)
 
 3.- Series Netflix:
-    - ¿Qué series se van a estrenar en Netflix proximamente?
-    - ¿Qué relación hay entre las series más populares (más votadas) con las mejores series (mejor puntuación)?
+    - ¿Qué series se van a estrenar en Netflix proximamente (igual poner más info)?
+      (calendario/lista cronológica)
+    - ¿Qué relación hay entre las series más populares (más votadas) con las mejores series
+      (mejor puntuación)? (Gráfico de dispersión)

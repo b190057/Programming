@@ -10,7 +10,7 @@ from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from log.config.msg import DATA_PATH
+from constants import DATA_PATH
 
 
 def get_releases_data(driver) -> list[dict]:
