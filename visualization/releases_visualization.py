@@ -20,8 +20,9 @@ def visualization_box_office(df_join: pd.DataFrame) -> None:
     """
 
     # get the data
-    df_join = df_join.sort_values(by='Duration', ascending=False)
-    normalization_index = 42000
+    df_join['Duration'] = df_join['Duration'].apply(lambda x: int(x) if str(x).isdigit() else None)
+    df_join = df_join.sort_values(by='Duration', ascending=True)
+    normalization_index = 100000
 
     # parse data to list
     title_list = df_join['Title'].to_list()
@@ -56,7 +57,7 @@ def visualization_box_office(df_join: pd.DataFrame) -> None:
     axs[1].legend(handles=handles, loc='upper right', frameon=True)
 
     plt.tight_layout()
-    plt.savefig(os.path.join(IMAGES_PATH, 'box_office.png'))
+    #plt.savefig(os.path.join(IMAGES_PATH, 'box_office.png'))
     plt.show()
 
 
