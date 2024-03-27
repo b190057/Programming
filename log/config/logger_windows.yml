@@ -25,3 +25,7 @@ loggers:
     level: DEBUG
     handlers: [file, console]
     propagate: no
+  visualization:
+    level: DEBUG
+    handlers: [ file, console ]
+    propagate: no
