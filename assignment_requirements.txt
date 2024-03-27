@@ -1,3 +1,4 @@
+# TODO: borrar este archivo para la tarea final
 Tarea 1:
 * Sacar datos de una web stática o dinámica y guardarlos en un csv.
 * Requerimientos:
@@ -35,16 +36,16 @@ Posibles preguntas:
     - ¿Qué actores, directores y géneros aparecen con más frecuencia en las películas mejor
       valoradas (top 15)? (diagrama barras)
     - ¿Hay actores y directores que tienden a colaborar juntos en películas exitosas de manera
-      recurrente (hacer lista de películas donde han colaborado por los mayores pares de director/actor? (grafo?
-      meter color por género?)
+      recurrente (ver las colaboraciones entre directores y actores, no puede haber relación
+      entre el mismo director y el mismo actor)
 
 2.- Peliculas cartelera:
-    - ¿De las péliculas que hay en cartelera(color el nombre) cuáles son las más taquilleras(tamaño, eje x) y
+    - ¿De las péliculas que hay en cartelera(color el nombre) cuáles son las más taquilleras(tamaño, dinero) y
       cúanto duran(posición, eje y), weeks para x (por total gross y weekend gross? (Gráfico de burbujas)
     - ¿Qué productor tiene más películas en cartelera? (tarta)
 
 3.- Series Netflix:
     - ¿Qué series se van a estrenar en Netflix proximamente (igual poner más info como género/país)?
-      (calendario/lista cronológica)
+      (calendario)
     - ¿Qué relación hay entre las series más populares (más votadas) con las mejores series
       (mejor puntuación)? (Gráfico de dispersión)
