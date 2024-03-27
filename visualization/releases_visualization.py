@@ -7,8 +7,7 @@ import matplotlib.patches as mpatches
 import pandas as pd
 
 from visualization import logger
-from constants import DATA_PATH
-from constants import IMAGES_PATH
+from constants import DATA_PATH, IMAGES_PATH, COLORS
 
 
 def visualization_box_office(df_join: pd.DataFrame) -> None:
@@ -30,35 +29,34 @@ def visualization_box_office(df_join: pd.DataFrame) -> None:
     total_gross_list = [int(size_str) / normalization_index for size_str in df_join['Total Gross'].to_list()]
     weeks_list = df_join['Weeks'].to_list()
     duration_list = df_join['Duration'].to_list()
-    colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'cyan', 'magenta']
+    colors = COLORS[:len(title_list)]
 
     # start the plot
     fig, axs = plt.subplots(1, 2, figsize=(14, 7))
 
-    # Trazar los datos en el primer subgráfico
+    # put data for the first plot
     axs[0].scatter(weeks_list, duration_list, s=total_gross_list, c=colors)
     axs[0].set_title('Box office total gross', weight='bold')
     axs[0].set_xlabel('Weeks')
     axs[0].set_ylabel('Duration (minutes)')
     axs[0].grid(True)
 
-    # Crear una leyenda para el primer subgráfico
+    # create legend for the first plot
     handles = [mpatches.Patch(color=color, label=label) for label, color in zip(title_list, colors)]
     axs[0].legend(handles=handles, loc='upper right', frameon=True)
 
-    # Trazar los datos en el segundo subgráfico (igual al primero)
+    # put data as the first one
     axs[1].scatter(weeks_list, duration_list, s=weekend_gross_list, c=colors)
     axs[1].set_title('Box office weekend gross', weight='bold')
     axs[1].set_xlabel('Weeks')
     axs[1].set_ylabel('Duration (minutes)')
     axs[1].grid(True)
 
-    # Crear una leyenda para el segundo subgráfico (igual al primero)
+    # create legend for the second plot
     axs[1].legend(handles=handles, loc='upper right', frameon=True)
 
     plt.tight_layout()
-    #plt.savefig(os.path.join(IMAGES_PATH, 'box_office.png'))
-    plt.show()
+    plt.savefig(os.path.join(IMAGES_PATH, 'box_office.png'))
 
 
 def visualization_producers(df_releases: pd.DataFrame) -> None:
@@ -69,14 +67,14 @@ def visualization_producers(df_releases: pd.DataFrame) -> None:
     @return: A plot that shows the most frequent producers of the released films
     """
 
-    # Count the participating of each actor
+    # count the participating of each actor
     counting_producers = {}
     df_releases['Producers'].apply(
         lambda producers: [
             counting_producers.update({producer.strip(): counting_producers.get(producer.strip(), 0) + 1}) for producer
             in producers])
 
-    # Represent actors that have done more than 8 films
+    # represent actors that have done more than 8 films
     producer_names = list(counting_producers.keys())
     producer_frequencies = list(counting_producers.values())
     filtered_producers = [(name, frequency) for name, frequency in zip(producer_names, producer_frequencies) if
@@ -89,7 +87,6 @@ def visualization_producers(df_releases: pd.DataFrame) -> None:
     plt.pie(values, labels=names, autopct='%1.1f%%')
 
     plt.savefig(os.path.join(IMAGES_PATH, 'top_producers.png'))
-    plt.show()
 
 
 def data_cleaning() -> tuple[pd.DataFrame, pd.DataFrame]:
