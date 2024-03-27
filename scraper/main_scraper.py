@@ -12,7 +12,7 @@ def main() -> None:
     @return:Save all the data extracted into several csv located in the data folder
     """
     logger = logging.getLogger("scraper")
-    # Execute scrappers
+    # execute scrappers
     top_scraper()
     releases_scraper()
     netflix_scraper()

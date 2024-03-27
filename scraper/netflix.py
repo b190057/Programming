@@ -415,4 +415,3 @@ def start_scrapper() -> None:
     logger.info("Netflix best content data correctly extracted")
 
     driver.quit()
-

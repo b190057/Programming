@@ -51,7 +51,6 @@ def get_data(driver) -> tuple[list[str], list[str], list[str]]:
         else:
             logger.error("Could not extract the actors")
 
-
     if len(actors_list) > 1:
         actors_list = actors_list[:-1]
 
